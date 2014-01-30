@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :current_user, :logged_in?
+
   def current_user
     return nil if session[:token].nil?
     @current_user ||= User.find_by_token(session[:token])
@@ -16,6 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
+    flash[:errors] = ["LOG IN, IDIOT!"]
     redirect_to new_session_url unless logged_in?
   end
 end
