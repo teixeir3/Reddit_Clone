@@ -32,6 +32,6 @@ describe Link do
   end
 
   it { should belong_to(:sub) }
-  it { should belong_to(:moderator) }
+  it { should have_one(:moderator) }
   it { should belong_to(:author) }
 end

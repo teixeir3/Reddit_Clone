@@ -20,10 +20,10 @@ class Link < ActiveRecord::Base
   belongs_to :sub
 
   belongs_to :author,
-  class_name: "User",
-  foreign_key: :author_id
+    class_name: "User",
+    foreign_key: :author_id
 
-  belongs_to :moderator,
-  through: :sub,
-  source: :moderator
+  has_one :moderator,
+    through: :sub,
+    source: :moderator
 end
