@@ -37,7 +37,7 @@ describe User do
     expect(user1.password).to be_nil
   end
 
-
+  it { should have_many(:subs) }
 
 
 
