@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 
 gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'annotate'
 
 group :development do
   gem 'better_errors'
