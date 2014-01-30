@@ -11,10 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130165949) do
+ActiveRecord::Schema.define(:version => 20140130190338) do
+
+  create_table "link_subs", :force => true do |t|
+    t.integer  "sub_id",     :null => false
+    t.integer  "link_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "link_subs", ["sub_id", "link_id"], :name => "index_link_subs_on_sub_id_and_link_id", :unique => true
 
   create_table "links", :force => true do |t|
-    t.integer  "sub_id",     :null => false
     t.string   "title",      :null => false
     t.string   "url",        :null => false
     t.integer  "author_id",  :null => false
@@ -24,7 +32,6 @@ ActiveRecord::Schema.define(:version => 20140130165949) do
   end
 
   add_index "links", ["author_id"], :name => "index_links_on_author_id"
-  add_index "links", ["sub_id"], :name => "index_links_on_sub_id"
 
   create_table "subs", :force => true do |t|
     t.string   "name",         :null => false

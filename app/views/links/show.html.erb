@@ -1,0 +1,16 @@
+<h1><%= @link.title %></h1>
+
+<ul>
+  <li>
+    <%= @link.url %>
+  </li>
+  <li>Subs:
+    <% @link.subs.each do |sub| %>
+      <a href="<%= sub_url(sub) %>"><%= sub.name %></a>
+    <% end %>
+  </li>
+</ul>
+
+<p>
+  <%= @link.text %>
+</p>

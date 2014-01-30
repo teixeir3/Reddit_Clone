@@ -19,7 +19,13 @@ class Sub < ActiveRecord::Base
               class_name: "User",
               foreign_key: :moderator_id
 
+  has_many :link_subs,
+            class_name: "LinkSub",
+            foreign_key: :sub_id,
+            inverse_of: :sub
+
   has_many :links,
-              class_name: "Link",
-              foreign_key: :sub_id
+            through: :link_subs,
+            source: :link,
+            inverse_of: :subs
 end

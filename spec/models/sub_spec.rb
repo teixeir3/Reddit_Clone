@@ -20,12 +20,14 @@ describe Sub do
     expect(FactoryGirl.build(:sub, name: nil)).not_to be_valid
   end
 
-  it "has a moderator_id" do
-    expect(FactoryGirl.build(:sub, moderator_id: nil)).not_to be_valid
+  it "has a moderator" do
+    expect(FactoryGirl.build(:sub, moderator: nil)).not_to be_valid
   end
 
   it { should belong_to(:moderator) }
 
   it { should have_many(:links) }
+
+  it { should have_many(:link_subs)}
 
 end

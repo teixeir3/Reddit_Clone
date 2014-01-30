@@ -1,0 +1,30 @@
+<h1>Edit Link</h1>
+
+
+<form action="<%= link_url(@link) %>" method="POST">
+  <input type="hidden" name="_method" value="put">
+  <%= form_auth %>
+
+  <br>
+  <label>Enter URL:
+    <input type="text" name="link[url]" value="<%= @link.url %>"></label>
+
+  <br>
+  <label>Enter title:
+    <input type="text" name="link[title]" value="<%= @link.title %>"></label>
+
+  <br>
+  <label>Enter Text
+    <textarea name="link[text]"><%= @link.text %></textarea></label>
+
+  <% @subs.each do |sub| %>
+    <br>
+    <label><%= sub.name %>
+      <input type="checkbox" name="link[sub_ids][]" value="<%= sub.id %>" <%= "checked" if @link.subs.include?(sub) %>></label>
+
+  <% end %>
+  <br>
+  <input type="hidden" name="link[sub_ids][]" value="">
+
+  <input type="submit" value="Edit Link">
+</form>

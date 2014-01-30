@@ -14,10 +14,10 @@
 FactoryGirl.define do
   factory :sub do
     name do
-      "Gourds that look like Bruce Willis"
+      Faker::Company.catch_phrase
     end
-    moderator_id do
-      1
+    moderator do
+      FactoryGirl.build(:user)
     end
   end
 end
