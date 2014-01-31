@@ -27,4 +27,34 @@ class Link < ActiveRecord::Base
 
   has_many :subs, through: :link_subs, source: :sub, inverse_of: :links
 
+  has_many :comments,
+    class_name: "Comment",
+    foreign_key: :link_id,
+    inverse_of: :link
+
+    #returns a nested hash
+    def comments_by_parent
+      comments = self.comments
+      orphans = comments.select { |comment| comment.orphan? }
+      {nil => orphans.map { |orphan| hashify(orphan) }}
+    end
+
+    def hashify(comment)
+
+      if comment.childless?
+        {comment => nil}
+      else
+        output = {}
+        children = comment.child_comments
+
+
+        output[comment] = children.map { |child| hashify(child) }
+
+
+        output
+      end
+      # takes comment and returns a hash like {parent: {child, child, child}}
+    end
+
+
 end

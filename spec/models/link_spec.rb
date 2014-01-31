@@ -39,4 +39,21 @@ describe Link do
   it { should have_many(:link_subs)}
 
   it { should belong_to(:author) }
+
+  it "should produce a nice hash of its comments" do
+    link = FactoryGirl.create(:link)
+    a = FactoryGirl.create(:comment, link: link)
+    b = FactoryGirl.create(:comment, link: link)
+    c = FactoryGirl.create(:comment, link: link)
+    d = FactoryGirl.create(:comment, link: link, parent_comment: a)
+    e = FactoryGirl.create(:comment, link: link, parent_comment: a)
+    f = FactoryGirl.create(:comment, link: link, parent_comment: c)
+    g = FactoryGirl.create(:comment, link: link, parent_comment: d)
+    h = FactoryGirl.create(:comment, link: link, parent_comment: e)
+    i = FactoryGirl.create(:comment, link: link, parent_comment: e)
+
+    expect(link.comments_by_parent_id).to eq(
+      {nil => [{a => [{d => [{g => nil}]}, {e => [{h => nil}, {i => nil}]}] },
+       {b => nil}, {c => [{f => nil} ] } ] }  )
+  end
 end

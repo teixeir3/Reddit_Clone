@@ -19,7 +19,7 @@ FactoryGirl.define do
       Faker::Company.catch_phrase
     end
     author do
-      FactoryGirl.build(:user)
+      FactoryGirl.create(:user)
     end
     url do
       Faker::Internet.url
@@ -28,7 +28,7 @@ FactoryGirl.define do
       Faker::Lorem.paragraph
     end
     subs do
-      [FactoryGirl.build(:sub)]
+      [FactoryGirl.create(:sub)]
     end
   end
 end

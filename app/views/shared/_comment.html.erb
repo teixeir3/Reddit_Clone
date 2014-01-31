@@ -1,0 +1,21 @@
+<% parent_comment = comment_hash.keys.first %>
+
+<p>
+  <%= parent_comment.body %>
+</p>
+<h3>
+  <%= parent_comment.author.username %>
+</h3>
+<% unless comment_hash[parent_comment].nil? %>
+  <h4>
+    Comments:
+  </h4>
+  <ul>
+  <% comment_hash[parent_comment].each do |child_comment| %>
+    <li>
+      <%= render "shared/comment" comment_hash: child_comment %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+

@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
     class_name: "Link",
     foreign_key: :author_id
 
+  has_many :comments,
+    class_name: "Comment",
+    foreign_key: :user_id,
+    inverse_of: :author
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

@@ -17,7 +17,7 @@ FactoryGirl.define do
       Faker::Company.catch_phrase
     end
     moderator do
-      FactoryGirl.build(:user)
+      FactoryGirl.create(:user)
     end
   end
 end

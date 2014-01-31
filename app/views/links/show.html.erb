@@ -14,3 +14,17 @@
 <p>
   <%= @link.text %>
 </p>
+
+<% unless @comments.empty? %>
+<h4>
+  Comments:
+</h4>
+<ul>
+<% @comments.values.each do |child_comment| %>
+  <li>
+    <%= render "shared/comment" comment_hash: child_comment %>
+  </li>
+<% end %>
+</ul>
+<% end %>
+
