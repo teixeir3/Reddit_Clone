@@ -15,16 +15,15 @@
   <%= @link.text %>
 </p>
 
-<% unless @comments.empty? %>
-<h4>
-  Comments:
-</h4>
+<h2>Comments</h2>
+<%= link_to "Add Comment:", new_link_comment_url(params[:id]) %><br><br>
+
 <ul>
-<% @comments.values.each do |child_comment| %>
-  <li>
-    <%= render "shared/comment" comment_hash: child_comment %>
-  </li>
-<% end %>
+  <% comments_by_parent = @link.comments_by_parent %>
+  <% comments_by_parent[nil].each do |top_level_comments| %>
+    <li>
+      <%= comment_partial(top_level_comments, comments_by_parent) %>
+    </li>
+  <% end %>
 </ul>
-<% end %>
 

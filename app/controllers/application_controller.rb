@@ -18,7 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate
-    flash[:errors] = ["LOG IN, IDIOT!"]
-    redirect_to new_session_url unless logged_in?
+
+    unless logged_in?
+      flash[:errors] = ["LOG IN, IDIOT!"]
+      redirect_to new_session_url
+    end
   end
 end

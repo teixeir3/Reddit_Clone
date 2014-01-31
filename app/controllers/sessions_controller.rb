@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if @user
       self.current_user = @user
-      redirect_to new_sub_url
+      redirect_to subs_url
     else
       flash.now[:errors] = ["Something is wrong here"]
       render :new

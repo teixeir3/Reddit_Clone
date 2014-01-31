@@ -2,7 +2,18 @@
   <strong><em><%= @sub.name %></em></strong>
 </h1>
 
+<h2>
+  Links:
+</h2>
+
+<ul>
+<% @sub.links.each do |link| %>
+  <%= link_to link.title, link_url(link) %>
+<% end %>
+</ul>
+
 <ul>
   <li><a href="<%= subs_url %>">Sub index</a></li>
   <li><a href="<%= edit_sub_url(@sub) %>">Edit Sub</a></li>
+  <li><%= link_to "Add Link", new_link_url  %></li>
 </ul>

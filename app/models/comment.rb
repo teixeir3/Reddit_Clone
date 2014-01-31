@@ -12,7 +12,7 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :body, :link, :parent_comment, :author
+  attr_accessible :body, :link, :parent_comment, :author, :parent_id, :parent_comment_id
 
   validates :body, :link, :author, presence: true
 

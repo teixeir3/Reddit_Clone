@@ -13,7 +13,7 @@
   <ul>
   <% comment_hash[parent_comment].each do |child_comment| %>
     <li>
-      <%= render "shared/comment" comment_hash: child_comment %>
+      <%= render "shared/comment", comment_hash: child_comment %>
     </li>
   <% end %>
   </ul>

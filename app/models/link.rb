@@ -32,11 +32,20 @@ class Link < ActiveRecord::Base
     foreign_key: :link_id,
     inverse_of: :link
 
-    #returns a nested hash
+    #returns a hash where each key(a parent_id) points to a value (an array of children)
     def comments_by_parent
-      comments = self.comments
-      orphans = comments.select { |comment| comment.orphan? }
-      {nil => orphans.map { |orphan| hashify(orphan) }}
+
+
+      comments_by_parent = Hash.new { |hash, key| hash[key] = [] }
+
+      comments.each do |comment|
+        comments_by_parent[comment.parent_comment_id] << comment
+      end
+
+      comments_by_parent
+      # comments = self.comments
+ #      orphans = comments.select { |comment| comment.orphan? }
+ #      {nil => orphans.map { |orphan| hashify(orphan) }}
     end
 
     def hashify(comment)

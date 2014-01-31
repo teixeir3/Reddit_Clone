@@ -55,5 +55,7 @@ describe Link do
     expect(link.comments_by_parent_id).to eq(
       {nil => [{a => [{d => [{g => nil}]}, {e => [{h => nil}, {i => nil}]}] },
        {b => nil}, {c => [{f => nil} ] } ] }  )
+
+       # {nil => [1,2,3], 1 => [4]}
   end
 end
