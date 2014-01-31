@@ -43,6 +43,8 @@ class Link < ActiveRecord::Base
       end
 
       comments_by_parent
+
+      ###################### STARTING OVER!
       # comments = self.comments
  #      orphans = comments.select { |comment| comment.orphan? }
  #      {nil => orphans.map { |orphan| hashify(orphan) }}
